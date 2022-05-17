@@ -1,0 +1,72 @@
+<div xmlns:th="http://www.w3.org/1999/xhtml">
+  <h2 th:if="${#lists.isEmpty(users)}">No users yet!</h2>
+  <div th:if="${not #lists.isEmpty(users)}">
+    <h2>Users</h2>
+    <style>
+      body{
+        background: linear-gradient(violet, dodgerblue);
+      }
+h2{
+  text-align: center;
+  color: black;
+  font-family: Arial;
+}
+table{
+  text-align: center;
+  margin:auto;
+  width: 180px;
+  font-family: Verdana;
+}
+
+p{
+  text-align: center;
+
+}
+td{
+
+}
+thead{
+  width:180px;
+}
+.surname{
+  width:180px;
+}
+.button{
+  background-color: #d000ff; /* Green */
+  border: none;
+  color: white;
+  padding: 12px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+  font-family: Verdana;
+}
+    </style>
+
+    <table style="width: 50%">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+       <tr th:each="user : ${users}">
+        <td th:text="${user.name}"></td>
+        <td class="surname" th:text="${user.surname}"></td>
+        <td th:text="${user.email}"></td>
+        <td style=""><a th:href="@{/edit/{id}(id=${user.id})}" type="button" class="button">Edit</a></td>
+        <td><a th:href="@{/delete/{id}(id=${user.id})}" type="button" class="button">Delete</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style=""><a href="/signup" type="button" class="button">Add a new user</a></p>
+  <p><a href="/logout" type="button" class="button">Logout</a></p>
+</div>
